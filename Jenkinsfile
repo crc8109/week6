@@ -7,7 +7,7 @@ podTemplate(containers: [
         ),
   ]) {
 
-    node(POD_LABEL) {
+    node('kubeagent') {
         stage('Run pipeline against a gradle project') {
             git branch: 'main', url: 'https://github.com/crc8109/week6'
             container('gradle') {
