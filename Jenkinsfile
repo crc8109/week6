@@ -14,6 +14,7 @@ podTemplate(containers: [
 
                 stage('Build a gradle project') {
                     sh '''
+                    cd week6
                     pwd
                     ls
                     chmod +x gradlew
