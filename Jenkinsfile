@@ -9,12 +9,12 @@ podTemplate(containers: [
 
     node(POD_LABEL) {
         stage('Run pipeline against a gradle project') {
-            git branch: env.BRANCH_NAME, url: 'https://github.com/crc8109/week6'
+            git branch: 'main', url: 'https://github.com/crc8109/week6'
             container('gradle') {
 
                 stage('Build a gradle project') {
                     sh '''
-                    echo I am the ${env.BRANCH_NAME} branch
+                    echo "I am the ${env.BRANCH_NAME} branch"
                     pwd
                     chmod +x gradlew
                     ./gradlew test
