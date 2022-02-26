@@ -13,6 +13,7 @@ podTemplate(containers: [
             container('gradle') {
 
                 stage('Build a gradle project') {
+                    sh '''
                     echo "I am the ${env.BRANCH_NAME} branch"
                     sh '''
                     pwd
