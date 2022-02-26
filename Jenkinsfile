@@ -45,8 +45,6 @@ podTemplate(containers: [
                     sh '''
                     echo "going to test statically now"
                     pwd
-                    cd Chapter08/sample1
-                    pwd
                     ./gradlew checkstyleMain
                     '''
                     publishHTML (target: [
