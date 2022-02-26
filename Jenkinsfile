@@ -22,15 +22,12 @@ podTemplate(containers: [
                     }
 
                 stage("Code coverage") {
-                    try {
+                    echo "CC is for main; this is ${env.BRANCH_NAME} branch"
+                    if (env.BRANCH_NAME == "main") {
                         sh '''
                             pwd
                             ./gradlew jacocoTestReport
                             ./gradlew jacocoTestCoverageVerification
-                        '''
-                    } catch (Exception E) {
-                            sh '''
-                            echo 'Failure detected!'
                         '''
                     }
 
