@@ -22,29 +22,26 @@ podTemplate(containers: [
                     }
 
                 stage("Code coverage") {
-                    try {
+                    echo "CC is for Main branch; this is ${env.BRANCH_NAME}"
+                    if (env.BRANCH_NAME == "main") {
                         sh '''
                             pwd
                             ./gradlew jacocoTestReport
                             ./gradlew jacocoTestCoverageVerification
                         '''
-                    } catch (Exception E) {
-                            sh '''
-                            cd Chapter08/sample1
-                            echo 'Failure detected!'
-                        '''
-                    }
+
 
                     publishHTML (target: [
                         reportDir: 'build/reports/jacoco/test/html',
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
                     ])
+                    }
                 }
 
                 stage("Static code analysis") {
-                    sh '''
                     echo "going to test statically now"
+                    sh '''
                     pwd
                     ./gradlew checkstyleMain
                     '''
