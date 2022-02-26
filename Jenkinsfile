@@ -9,14 +9,12 @@ podTemplate(containers: [
 
     node(POD_LABEL) {
         stage('Run pipeline against a gradle project') {
-            git 'https://github.com/crc8109/week6'
+            git branch: 'main', url: 'https://github.com/crc8109/week6'
             container('gradle') {
 
                 stage('Build a gradle project') {
                     sh '''
-                    cd week6
                     pwd
-                    ls
                     chmod +x gradlew
                     ./gradlew test
                     '''
@@ -25,8 +23,6 @@ podTemplate(containers: [
                 stage("Code coverage") {
                     try {
                         sh '''
-                            pwd
-                            cd Chapter08/sample1
                             pwd
                             ./gradlew jacocoTestReport
                             ./gradlew jacocoTestCoverageVerification
