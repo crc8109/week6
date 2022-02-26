@@ -7,7 +7,7 @@ podTemplate(containers: [
         ),
   ])
 
-    pipeline {
+    {
 
     node(POD_LABEL) {
 
