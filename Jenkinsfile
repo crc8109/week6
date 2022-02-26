@@ -5,7 +5,16 @@ podTemplate(containers: [
         command: 'sleep',
         args: '30d'
         ),
-  ]) {
+  ])
+
+    pipeline {
+        agent {
+            node {
+                label 'kubeagent'
+            }
+        }
+
+    {
     node(POD_LABEL) {
         agent 'kubeagent'
         stage('Run pipeline against a gradle project') {
