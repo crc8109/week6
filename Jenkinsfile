@@ -24,8 +24,6 @@ podTemplate(containers: [
                     try {
                         sh '''
                             pwd
-                            cd Chapter08/sample1
-                            pwd
                             ./gradlew jacocoTestReport
                             ./gradlew jacocoTestCoverageVerification
                         '''
