@@ -6,9 +6,6 @@ podTemplate(containers: [
         args: '30d'
         ),
   ]) {
-
-  pipeline {
-
     agent {
         node {
             label 'kubeagent'
