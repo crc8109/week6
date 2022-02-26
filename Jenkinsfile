@@ -14,6 +14,7 @@ podTemplate(containers: [
 
                 stage('Build a gradle project') {
                     sh '''
+                    echo "I am the ${env.BRANCH_NAME} branch"
                     pwd
                     chmod +x gradlew
                     ./gradlew test
