@@ -40,8 +40,8 @@ podTemplate(containers: [
                 }
 
                 stage("Static code analysis") {
-                    sh '''
                     echo "going to test statically now"
+                    sh '''
                     pwd
                     ./gradlew checkstyleMain
                     '''
