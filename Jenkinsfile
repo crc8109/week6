@@ -8,8 +8,8 @@ podTemplate(containers: [
   ]) {
 
     node(POD_LABEL) {
-        stage('Run pipeline against a gradle project - test MAIN') {
-            git branch: 'W5Ex5', url: 'https://github.com/crc8109/Continuous-Delivery-with-Docker-and-Jenkins-Second-Edition'
+        stage('Run pipeline against a gradle project') {
+            git 'https://github.com/crc8109/week6.git'
             container('gradle') {
 
                 stage('Build a gradle project') {
