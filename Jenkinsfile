@@ -5,24 +5,14 @@ podTemplate(containers: [
         command: 'sleep',
         args: '30d'
         ),
-  ])
+  ]) {
 
-    pipeline {
-        agent {
-            node {
-                label 'kubeagent'
-            }
-        }
-
-    {
     node(POD_LABEL) {
-        agent 'kubeagent'
         stage('Run pipeline against a gradle project') {
             git branch: 'main', url: 'https://github.com/crc8109/week6'
             container('gradle') {
 
                 stage('Build a gradle project') {
-                    sh '''
                     echo "I am the ${env.BRANCH_NAME} branch"
                     sh '''
                     pwd
