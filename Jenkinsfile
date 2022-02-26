@@ -29,7 +29,7 @@ podTemplate(containers: [
                             ./gradlew jacocoTestReport
                             ./gradlew jacocoTestCoverageVerification
                         '''
-                    }
+                    
 
                     publishHTML (target: [
                         reportDir: 'build/reports/jacoco/test/html',
