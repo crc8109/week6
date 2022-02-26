@@ -22,7 +22,7 @@ podTemplate(containers: [
                     }
 
                 stage("Code coverage") {
-                    echo "CC is for main; this is ${env.BRANCH_NAME} branch"
+                    echo "CC is for Main branch; this is ${env.BRANCH_NAME}"
                     if (env.BRANCH_NAME == "main") {
                         sh '''
                             pwd
