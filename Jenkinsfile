@@ -14,7 +14,6 @@ podTemplate(containers: [
 
                 stage('Build a gradle project') {
                     sh '''
-                    cd Chapter08/sample1
                     chmod +x gradlew
                     ./gradlew test
                     '''
