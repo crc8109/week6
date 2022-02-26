@@ -5,26 +5,17 @@ podTemplate(containers: [
         command: 'sleep',
         args: '30d'
         ),
-  ])
-
-    {
+  ]) {
 
     node(POD_LABEL) {
-
-        agent {
-            node {
-                label 'kubeagent'
-            }
-        }
         stage('Run pipeline against a gradle project') {
-            git 'https://github.com/crc8109/week6'
+            git branch: 'main', url: 'https://github.com/crc8109/week6'
             container('gradle') {
 
                 stage('Build a gradle project') {
+                    echo "I am the ${env.BRANCH_NAME} branch"
                     sh '''
-                    cd week6
                     pwd
-                    ls
                     chmod +x gradlew
                     ./gradlew test
                     '''
@@ -33,8 +24,6 @@ podTemplate(containers: [
                 stage("Code coverage") {
                     try {
                         sh '''
-                            pwd
-                            cd Chapter08/sample1
                             pwd
                             ./gradlew jacocoTestReport
                             ./gradlew jacocoTestCoverageVerification
@@ -47,7 +36,7 @@ podTemplate(containers: [
                     }
 
                     publishHTML (target: [
-                        reportDir: 'Chapter08/sample1/build/reports/jacoco/test/html',
+                        reportDir: 'build/reports/jacoco/test/html',
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
                     ])
@@ -57,12 +46,10 @@ podTemplate(containers: [
                     sh '''
                     echo "going to test statically now"
                     pwd
-                    cd Chapter08/sample1
-                    pwd
                     ./gradlew checkstyleMain
                     '''
                     publishHTML (target: [
-                        reportDir: 'Chapter08/sample1/build/reports/checkstyle/',
+                        reportDir: 'build/reports/checkstyle/',
                         reportFiles: 'main.html',
                         reportName: "Checkstyle Report"
                     ])
