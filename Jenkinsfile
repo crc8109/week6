@@ -35,7 +35,7 @@ podTemplate(containers: [
                     }
 
                     publishHTML (target: [
-                        reportDir: '/build/reports/jacoco/test/html',
+                        reportDir: 'build/reports/jacoco/test/html',
                         reportFiles: 'index.html',
                         reportName: "JaCoCo Report"
                     ])
@@ -48,7 +48,7 @@ podTemplate(containers: [
                     ./gradlew checkstyleMain
                     '''
                     publishHTML (target: [
-                        reportDir: '/build/reports/checkstyle/',
+                        reportDir: 'build/reports/checkstyle/',
                         reportFiles: 'main.html',
                         reportName: "Checkstyle Report"
                     ])
